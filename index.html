@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript ES6</title>
+
+    
+    <!-- Load Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Your custom script here -->
+    <script type="text/babel">
+        
+        //Pilar do polimorfismo
+
+        //Reutilizável
+        //Sobrescrita de métodos
+
+        class Animal{
+            constructor(tamanho,cor,peso){
+                this.tamanho = tamanho
+                this.cor = cor
+                this.peso = peso
+            }
+ 
+            dormir(){
+                console.log('Dormir')
+            }
+ 
+        }
+
+        class Passaro extends Animal{
+            constructor(bico, tamanho, cor, peso){
+                super(tamanho, cor, peso)
+                this.bico = bico
+            }
+            voar(){
+                console.log('Voar')
+            }
+        }
+ 
+        class Papagaio extends Passaro{
+            constructor(sabeFalar, bico, tamanho, cor, peso){
+                super(bico, tamanho, cor, peso)
+                this.sabeFalar = sabeFalar
+            }
+            falar(){
+                console.log('Falar')
+            }
+        }
+ 
+        class Avestruz extends Passaro{
+            constructor(){
+                super('Pequeno', 100, 'Marrom e branco', 15000)
+            }
+
+            enterrarCabeca(){
+                console.log('Enterrar cabeça')
+            }
+            //Explicação 2: Então se o método não é valido para a classe, podemos sobrescrevê-lo para anular o método.
+            voar(){
+                console.log('Não voa')
+            }
+        }
+
+        //Parâmetros: sabeFalar, bico, tamanho, cor, peso
+        let Papagaio1 = new Papagaio(true, 'Pequeno', 25, 'Azul', 300)
+        let Avestruz1 = new Avestruz()
+
+        Papagaio1.voar()
+        Avestruz1.enterrarCabeca()
+
+        //Explicação 1: Podemos chamar métodos herdados mesmo não sendo válidos
+        Avestruz1.voar()
+
+    </script>
+</head>
+
+<body>
+    <div id="output"></div>
+</body>
+</html>
